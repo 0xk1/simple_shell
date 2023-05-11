@@ -27,7 +27,7 @@ int main(void)
 			exit(EXIT_SUCCESS);
 		}
 
-		if (n_chars == 1 && input[0] == '\n')
+		if ((n_chars == 1 && input[0] == '\n') || check_blank(input) == 0)
 			continue;
 
 		tokens = parsing(input, " \t\n");
