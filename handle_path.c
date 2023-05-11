@@ -1,11 +1,17 @@
 #include "shell.h"
 
+/**
+ * _getenv - getenv
+ * @name: variable name
+ * Return: null or value
+ */
+
 char *_getenv(char *name)
 {
 	char **env = environ;
 	int i = 0;
 	size_t namelen = _strlen(name);
-	
+
 	while (env[i])
 	{
 		if (_strncmp(name, env[i], namelen) == 0 && env[i][namelen] == '=')
@@ -15,6 +21,12 @@ char *_getenv(char *name)
 
 	return (NULL);
 }
+/**
+ * path_concat - concat two strings
+ * @str1: string 1
+ * @str2: string 2
+ * Return: str1/str2
+ */
 
 char *path_concat(char *str1, char *str2)
 {
@@ -47,6 +59,11 @@ char *path_concat(char *str1, char *str2)
 	return (result);
 }
 
+/**
+ * handle_path - check for executable in path variable
+ * @cmd: command
+ * Return: path or null
+ */
 char *handle_path(char *cmd)
 {
 	char **tokens, *path, *path_copy, *dir;

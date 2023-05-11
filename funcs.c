@@ -14,15 +14,10 @@ int _putchar(char c)
  * _puts - prints a string
  * @s: string
  */
-void _puts(char *s)
+void _puts(char *s, int buffer)
 {
-	int  i = 0;
 
-	while (s[i])
-	{
-		_putchar(s[i]);
-		i++;
-	}
+	write(buffer, s, _strlen(s));
 }
 
 /**

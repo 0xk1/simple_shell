@@ -11,8 +11,11 @@
 #include <stdbool.h>
 
 
-extern char **environ;
 #define PROMPT "$ "
+
+extern char **environ;
+extern char *input;
+
 
 
 typedef struct built_in
@@ -26,7 +29,7 @@ char **parsing(char *input, char *delimiter);
 
 /** strings */
 int _putchar(char c);
-void _puts(char *s);
+void _puts(char *s, int buffer);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *s);
@@ -43,7 +46,12 @@ char *handle_path(char *cmd);
 
 void (*get_built_in(char *name))(char **);
 
-void env_func(char **args);
-void exit_func(char **args);
+/** built in */
+void env_func(char **);
+void exit_func(char **);
 
+/** helpers */
+
+void handle_builtin(char **tokens);
+void free_tokens(char **tokens);
 #endif

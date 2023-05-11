@@ -20,45 +20,49 @@ void (*get_built_in(char *name))(char **)
 	return (NULL);
 }
 
+void handle_builtin(char **tokens)
+{
+	void (*func)(char **);
+
+	func = get_built_in(tokens[0]);
+	if (func)
+	{
+		func(tokens);
+		if (_strcmp(tokens[0], "exit") == 0)
+				exit(0);
+	}
+}
 /**
  * execute - function that execute commands
  * @tokens: array of tokens
  */
+
 void execute(char **tokens)
 {
 	char *cmd = tokens[0], *path;
 	struct stat buffer;
 	pid_t pid;
-	void (*p)(char **);
 
-	p = get_built_in(cmd);
-
-	if (p)
-	{
-		p(tokens);
-		return;
-	}
+	handle_builtin(tokens);
 
 	path = handle_path(cmd);
-
 	if (!path)
 	{
-		_puts("command not found\n");
+		_puts("command not found\n", 2);
 		return;
 	}
 
 	pid = fork();
-
 	if (pid == 0)
 	{
 		if (execve(path, tokens, environ) == -1)
 		{
 			if (stat(cmd, &buffer) == 0)
 			{
-				_puts("-bash: ");
-				_puts(cmd);
-				_puts(": ");
-				_puts("Is a directory\n");
+				_puts("-bash: ", 2);
+				_puts(cmd, 2);
+				_puts(": ", 2);
+				_puts("Is a directory\n", 2);
 				exit(EXIT_FAILURE);
 			}
 			perror("error");
@@ -72,5 +76,5 @@ void execute(char **tokens)
 
 	if (path != cmd)
 		free(path);
-		
+
 }

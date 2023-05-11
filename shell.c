@@ -1,36 +1,36 @@
 #include "shell.h"
-
+char *input;
 /**
  * main - Entry point
  * Return: 0
  */
 int main(void)
 {
-	char *input = NULL, **tokens;
+	char **tokens;
 	size_t n = 0;
 	ssize_t n_chars;
-	int j;
 	bool run = true;
 
 	while (run)
 	{
 		if (isatty(STDIN_FILENO))
-			_puts(PROMPT);
+			_puts(PROMPT, 1);
 		else
 			run = false;
 
 		n_chars = getline(&input, &n, stdin);
-
+		
 		if (n_chars == EOF)
 		{
-			_puts("\nExiting...\n");
+			_puts("\nExiting...\n", 1);
 			free(input);
 			exit(EXIT_SUCCESS);
 		}
 
 		if (n_chars == 1 && input[0] == '\n')
 			continue;
-		tokens = parsing(input , " \n");
+
+		tokens = parsing(input, " \t\n");
 
 		if (!tokens)
 		{
@@ -39,10 +39,7 @@ int main(void)
 		}
 		execute(tokens);
 
-		for (j = 0; tokens[j] != NULL; j++)
-			free(tokens[j]);
-
-		free(tokens);
+		free_tokens(tokens);
 		free(input);
 		input = NULL;
 		n = 0;
