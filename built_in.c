@@ -29,9 +29,14 @@ void exit_func(char **args)
  * @args: tokens
  */
 
-void env_func(char **args __attribute__((unused)))
+void env_func(char **args)
 {
 	int i = 0;
+	
+	while (args[i])
+		i++;
+	if (i > 1)
+		return;
 
 	while (environ[i])
 	{
