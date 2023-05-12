@@ -43,20 +43,3 @@ int _strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-/**
- * check_blank - check if a string is made of only blank spaces
- * @imput : the imput
- * Return: return 0 if its blank or 1 if its not
-*/
-int check_blank(char *inmput)
-{
-	int i = 0;
-	while (inmput[i] != '\n')
-	{
-		if (inmput[i] == ' ')
-			i++;
-		else
-			return (1);
-	}
-	return (0);
-}

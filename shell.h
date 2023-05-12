@@ -54,4 +54,5 @@ void exit_func(char **);
 
 void handle_builtin(char **tokens);
 void free_tokens(char **tokens);
+int check_blank(char *);
 #endif
