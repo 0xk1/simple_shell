@@ -59,5 +59,5 @@ int check_blank(char *);
 /** _getline*/
 char *insertstring(char **dst, char *str);
 int check(char **buff, int n);
-size_t _getline(char **line, size_t *n, FILE *fp);
+ssize_t _getline(char **line, size_t *n, FILE *fp);
 #endif

@@ -95,7 +95,6 @@ int check (char **buff, int n)
 	if (kn == 0 && n < 1024)
 		{
 			kn = 1;
-			i = 0;
 		}
 	return (kn);
 }
@@ -108,24 +107,24 @@ int check (char **buff, int n)
  * @fp: FILE structur
  * Return: the number of charcters read
 */
-size_t _getline(char **line, size_t *n, FILE *fp)
+ssize_t _getline(char **line, size_t *n, FILE *fp)
 {
 	char *buff, *copyline;
 	int i, rd;
 	int fd = fp->_fileno;
 
 	copyline = malloc(1024);
-	rd = read(fd, copyline, 1024);
+	rd = read(fd, copyline, 1023);
 	if (rd == -1)
 		return (-1);
 	if (rd == 0)
-		copyline[0] = '\n';
+		return (EOF);
 	copyline[rd] = '\0';
 	i = check(&copyline, rd);
 	while (i == 0)
 	{
 		buff = malloc(1024);
-		rd = read(fd, buff, 1024);
+		rd = read(fd, buff, 1023);
 		buff[rd] = 0;
 		copyline = insertstring(&copyline, buff);
 		i = check(&copyline, rd);
