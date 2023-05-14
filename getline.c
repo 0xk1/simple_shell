@@ -59,7 +59,7 @@ char *insertstring(char **dst, char *str)
  * @n: number of characters read in (read)
  * Return: 0 if it doesnt 1 if it does
 */
-int check(char **buff, int n)
+int check (char **buff, int n)
 {
 	int i = 0, j = 0;
 	int kn = 0;
@@ -71,30 +71,35 @@ int check(char **buff, int n)
 		{
 			kn = 1;
 			break;
-		}
+		}	
 		i++;
 	}
 	if (kn == 1)
 	{
-		new = malloc(i + 1);
+		new = malloc(i + 2);
 		copybuff = *buff;
-		while (j <= i)
+		if (i != 0)
 		{
-			new[j] = (*buff)[j];
-			j++;
+			while (j <= i)
+			{
+				new[j] = copybuff[j];
+				j++;
+			}
 		}
-		new[j + 1] = '\0';
+		else
+			new[i] = '\n';
+		new[i + 1] = '\0';
 		*buff = new;
 		free(copybuff);
-		i = 0;
 	}
 	if (kn == 0 && n < 1024)
-	{
-		kn = 1;
-		i = 0;
-	}
+		{
+			kn = 1;
+			i = 0;
+		}
 	return (kn);
 }
+
 
 /**
  * _getline - prototype of getline
@@ -103,7 +108,7 @@ int check(char **buff, int n)
  * @fp: FILE structur
  * Return: the number of charcters read
 */
-int _getline(char **line, int *n, FILE *fp)
+size_t _getline(char **line, size_t *n, FILE *fp)
 {
 	char *buff, *copyline;
 	int i, rd;
@@ -111,11 +116,11 @@ int _getline(char **line, int *n, FILE *fp)
 
 	copyline = malloc(1024);
 	rd = read(fd, copyline, 1024);
-	if (rd == 0)
-		copyline[0] = '\n';
 	if (rd == -1)
 		return (-1);
-	copyline[rd] = 0;
+	if (rd == 0)
+		copyline[0] = '\n';
+	copyline[rd] = '\0';
 	i = check(&copyline, rd);
 	while (i == 0)
 	{

@@ -18,7 +18,7 @@ int main(void)
 		else
 			run = false;
 
-		n_chars = getline(&input, &n, stdin);
+		n_chars = _getline(&input, &n, stdin);
 		
 		if (n_chars == EOF)
 		{
