@@ -4,7 +4,7 @@ char *input;
  * main - Entry point
  * Return: 0
  */
-int main(void)
+int main(int argc __attribute__((unused)), char *argv[])
 {
 	char **tokens;
 	size_t n = 0;
@@ -28,7 +28,9 @@ int main(void)
 		}
 
 		if ((n_chars == 1 && input[0] == '\n') || check_blank(input) == 0)
+		{
 			continue;
+		}
 
 		tokens = parsing(input, " \t\n");
 
@@ -37,7 +39,7 @@ int main(void)
 			perror("parsing failed");
 			return (0);
 		}
-		execute(tokens);
+		execute(tokens,argv);
 
 		free_tokens(tokens);
 		free(input);

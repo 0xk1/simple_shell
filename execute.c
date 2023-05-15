@@ -1,5 +1,7 @@
 #include "shell.h"
 
+static int err_count = 0;
+
 void (*get_built_in(char *name))(char **)
 {
 	int i = 0;
@@ -32,23 +34,26 @@ void handle_builtin(char **tokens)
 				exit(0);
 	}
 }
+
 /**
  * execute - function that execute commands
  * @tokens: array of tokens
  */
 
-void execute(char **tokens)
+void execute(char **tokens, char *argv[])
 {
 	char *cmd = tokens[0], *path;
-	struct stat buffer;
 	pid_t pid;
 
 	handle_builtin(tokens);
 
+
 	path = handle_path(cmd);
 	if (!path)
 	{
-		_puts("command not found\n", 2);
+		err_count++;
+		print_error(argv[0], err_count, cmd);
+		_puts(": not found\n", 2);
 		return;
 	}
 
@@ -57,15 +62,11 @@ void execute(char **tokens)
 	{
 		if (execve(path, tokens, environ) == -1)
 		{
-			if (stat(cmd, &buffer) == 0)
-			{
-				_puts("-bash: ", 2);
-				_puts(cmd, 2);
-				_puts(": ", 2);
-				_puts("Is a directory\n", 2);
-				exit(EXIT_FAILURE);
-			}
-			perror("error");
+			err_count++;
+
+			print_error(argv[0], err_count, cmd);
+			_puts(": ", 2);
+			perror("");
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -76,5 +77,13 @@ void execute(char **tokens)
 
 	if (path != cmd)
 		free(path);
+}
 
+void print_error(char *shell_name, int errno, char *cmd)
+{
+	_puts(shell_name, 2);
+	_puts(": ", 2);
+	print_int(errno);
+	_puts(": ", 2);
+	_puts(cmd, 2);
 }

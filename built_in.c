@@ -13,7 +13,6 @@ void exit_func(char **args)
 	if (i == 1)
 	{
 		free_tokens(args);
-		free(input);
 		exit(0);
 	}
 	else
