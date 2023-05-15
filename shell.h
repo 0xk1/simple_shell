@@ -10,12 +10,9 @@
 #include <sys/stat.h>
 #include <stdbool.h>
 
-
 #define PROMPT "$ "
 
 extern char **environ;
-extern char *input;
-
 
 
 typedef struct built_in
@@ -28,7 +25,7 @@ typedef struct built_in
 char **parsing(char *input, char *delimiter);
 
 /** strings */
-int _putchar(char c);
+int _putchar(char c, int buffer);
 void _puts(char *s, int buffer);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
@@ -41,7 +38,7 @@ char *_getenv(char *name);
 
 /** execution */
 
-void execute(char **argv);
+void execute(char **, char **);
 char *handle_path(char *cmd);
 
 void (*get_built_in(char *name))(char **);
@@ -60,4 +57,8 @@ int check_blank(char *);
 char *insertstring(char **dst, char *str);
 int check(char **buff, int n);
 ssize_t _getline(char **line, size_t *n, FILE *fp);
+
+void print_int(int n);
+void print_error(char *shell_name, int errno, char *cmd);
+
 #endif
