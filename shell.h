@@ -52,6 +52,13 @@ void exit_func(char **);
 void handle_builtin(char **tokens);
 void free_tokens(char **tokens);
 int check_blank(char *);
+
+/** _getline*/
+char *insertstring(char **dst, char *str);
+int check(char **buff, int n);
+ssize_t _getline(char **line, size_t *n, FILE *fp);
+
 void print_int(int n);
 void print_error(char *shell_name, int errno, char *cmd);
+
 #endif
