@@ -91,7 +91,6 @@ char *_strdup(char *s)
 
 	_strcpy(copy, s);
 
-	s[len] = '\0';
-
+/* 	s[len] = '\0';*/
 	return (copy);
 }

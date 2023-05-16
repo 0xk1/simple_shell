@@ -53,6 +53,6 @@ void setenv_func(char **args)
 	while (args[i])
 		i++;
 	if (i == 3)
-	_setenv(args[1], args[2], 0);
+		_setenv(args[1], args[2], 0);
 	return;
 }

@@ -42,25 +42,43 @@ int check_blank(char *inmput)
 
 int _setenv(char *name, char *value, int overwrite)
 {
-	char **env = environ;
-	int i = 0, tst = 0;
+	char **env;
+	int i = 0, tst = 0, j = 0;/*tst - test if "name" is a varibale path*/
 	int namelen = _strlen(name);
 
-	while (env[i])
+
+	while (environ[i])
 	{
-		if (_strncmp(name, env[i], namelen) == 0 && env[i][namelen] == '=')
+		if (_strncmp(name, environ[i], namelen) == 0 && environ[i][namelen] == '=')
+		{
 			tst = 1;
+			break;
+		}
 		i++;
 	}
 	if (tst == 1)
 	{
 		if (overwrite == 0)
-			environ[i] = string_concat(name, value, '=');
+			environ[i] = strdup(string_concat(name, value, '='));
 		return (0);
 	}
-	if (tst != 1)
+	if (tst == 0)
 	{
-		return(-1);/*i'll code it later*/
+		int ln = 0;
+		/*getting env lengh*/
+		while (environ[ln] != NULL)
+			ln++;
+ 		env = malloc(8 * (ln + 2));
+		/*copying environ into env*/
+  		for (;environ[j] != NULL; j++)
+			env[j] = environ[j];
+		/*setting the new environemnt variable*/
+		env[j] = string_concat(name, value, '=');
+		env[j + 1 ] = NULL;
+
+		environ = env;
+
+		return (0);
 	}
 	return (-1);
 }
