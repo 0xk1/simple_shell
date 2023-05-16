@@ -59,7 +59,7 @@ int _setenv(char *name, char *value, int overwrite)
 	if (tst == 1)
 	{
 		if (overwrite == 0)
-			environ[i] = strdup(string_concat(name, value, '='));
+			environ[i] = _strdup(string_concat(name, value, '='));
 		return (0);
 	}
 	if (tst == 0)

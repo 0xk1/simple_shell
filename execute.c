@@ -5,7 +5,7 @@ static int err_count = 0;
 void (*get_built_in(char *name))(char **)
 {
 	int i = 0;
-	int ln = _strlen(name);
+	int len = _strlen(name);
 
 	built_in_t built_in[] = {
 		{"exit", exit_func},
@@ -17,7 +17,7 @@ void (*get_built_in(char *name))(char **)
 	while (built_in[i].name)
 	{
 
-		if (_strncmp(built_in[i].name, name, _strlen(name) == 0) && !(_strlen(name) == _strlen(built_in[i].name)))
+		if (_strncmp(built_in[i].name, name, len == 0) && !(len == _strlen(built_in[i].name)))
 			return (built_in[i].func);
 		i++;
 	}
