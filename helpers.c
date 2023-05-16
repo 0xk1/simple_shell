@@ -31,3 +31,54 @@ int check_blank(char *inmput)
 	}
 	return (0);
 }
+
+/**
+ * _setenv - set an environment variable
+ * @name : variable name
+ * @value : the new value
+ * @overwrite : if overwrite = 0 the value will be overwritten
+ * @Return: return 0 on success -1 on any faillure
+*/
+
+int _setenv(char *name, char *value, int overwrite)
+{
+	char **env;
+	int i = 0, tst = 0, j = 0;/*tst - test if "name" is a varibale path*/
+	int namelen = _strlen(name);
+
+
+	while (environ[i])
+	{
+		if (_strncmp(name, environ[i], namelen) == 0 && environ[i][namelen] == '=')
+		{
+			tst = 1;
+			break;
+		}
+		i++;
+	}
+	if (tst == 1)
+	{
+		if (overwrite == 0)
+			environ[i] = strdup(string_concat(name, value, '='));
+		return (0);
+	}
+	if (tst == 0)
+	{
+		int ln = 0;
+		/*getting env lengh*/
+		while (environ[ln] != NULL)
+			ln++;
+ 		env = malloc(8 * (ln + 2));
+		/*copying environ into env*/
+  		for (;environ[j] != NULL; j++)
+			env[j] = environ[j];
+		/*setting the new environemnt variable*/
+		env[j] = string_concat(name, value, '=');
+		env[j + 1 ] = NULL;
+
+		environ = env;
+
+		return (0);
+	}
+	return (-1);
+}
