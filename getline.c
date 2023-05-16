@@ -130,7 +130,6 @@ ssize_t _getline(char **line, size_t *n, FILE *fp)
 		i = check(&copyline, rd);
 		free(buff);
 	}
-	free(*line);
 	*line = copyline;
 	*n = _strlen(*line);
 	return (*n);

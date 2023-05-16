@@ -54,6 +54,5 @@ void setenv_func(char **args)
 		i++;
 	if (i == 3)
 	_setenv(args[1], args[2], 0);
-	_puts("sssss", 1);
 	return;
 }

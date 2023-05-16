@@ -9,6 +9,7 @@ void (*get_built_in(char *name))(char **)
 	built_in_t built_in[] = {
 		{"exit", exit_func},
 		{"env", env_func},
+		{"setenv", setenv_func},
 		{NULL, NULL}
 	};
 
@@ -22,7 +23,7 @@ void (*get_built_in(char *name))(char **)
 	return (NULL);
 }
 
-void handle_builtin(char **tokens)
+int handle_builtin(char **tokens)
 {
 	void (*func)(char **);
 
@@ -30,9 +31,11 @@ void handle_builtin(char **tokens)
 	if (func)
 	{
 		func(tokens);
-		if (_strcmp(tokens[0], "exit") == 0)
+ 		if (_strcmp(tokens[0], "exit") == 0)
 				exit(0);
+		return (1);
 	}
+	return (0);
 }
 
 /**
@@ -45,38 +48,38 @@ void execute(char **tokens, char *argv[])
 	char *cmd = tokens[0], *path;
 	pid_t pid;
 
-	handle_builtin(tokens);
-
-
-	path = handle_path(cmd);
-	if (!path)
+	if (handle_builtin(tokens) == 0)
 	{
-		err_count++;
-		print_error(argv[0], err_count, cmd);
-		_puts(": not found\n", 2);
-		return;
-	}
-
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execve(path, tokens, environ) == -1)
+		path = handle_path(cmd);
+		if (!path)
 		{
 			err_count++;
-
 			print_error(argv[0], err_count, cmd);
-			_puts(": ", 2);
-			perror("");
-			exit(EXIT_FAILURE);
+			_puts(": not found\n", 2);
+			return;
 		}
-	}
-	else if (pid > 0)
-		wait(NULL);
-	else
-		perror("fork() failed");
 
-	if (path != cmd)
-		free(path);
+		pid = fork();
+		if (pid == 0)
+		{
+			if (execve(path, tokens, environ) == -1)
+			{
+				err_count++;
+
+				print_error(argv[0], err_count, cmd);
+				_puts(": ", 2);
+				perror("");
+				exit(EXIT_FAILURE);
+			}
+		}
+		else if (pid > 0)
+			wait(NULL);
+		else
+			perror("fork() failed");
+
+		if (path != cmd)
+			free(path);
+	}
 }
 
 void print_error(char *shell_name, int errno, char *cmd)
