@@ -22,13 +22,13 @@ char *_getenv(char *name)
 	return (NULL);
 }
 /**
- * path_concat - concat two strings
+ * string_concat - concat two strings
  * @str1: string 1
  * @str2: string 2
  * Return: str1/str2
  */
 
-char *path_concat(char *str1, char *str2)
+char *string_concat(char *str1, char *str2, char ch)
 {
 	size_t s1_len, s2_len, i = 0, j = 0;
 	char *result;
@@ -45,7 +45,7 @@ char *path_concat(char *str1, char *str2)
 		i++;
 	}
 
-	result[i] = '/';
+	result[i] = ch;
 	i++;
 
 	while (str2[j])
@@ -81,7 +81,7 @@ char *handle_path(char *cmd)
 	}
 	while (tokens[i])
 	{
-		dir = path_concat(tokens[i], cmd);
+		dir = string_concat(tokens[i], cmd, '/');
 		if (stat(dir, &buffer) == 0)
 		{
 			while (tokens[i])

@@ -45,3 +45,15 @@ void env_func(char **args)
 	}
 
 }
+
+
+void setenv_func(char **args)
+{
+	int i = 0;
+	while (args[i])
+		i++;
+	if (i == 3)
+	_setenv(args[1], args[2], 0);
+	_puts("sssss", 1);
+	return;
+}
