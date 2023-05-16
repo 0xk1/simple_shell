@@ -16,7 +16,7 @@ void (*get_built_in(char *name))(char **)
 
 	while (built_in[i].name)
 	{
-		if (_strncmp(name, built_in[i].name, ln) == 0)
+		if (_strncmp(name, built_in[i].name, ln) == 0 && (ln == _strlen(built_in[i].name)))
 			return (built_in[i].func);
 		i++;
 	}
