@@ -77,8 +77,8 @@ int _setenv(char *name, char *value, int overwrite)
 		env[j + 1 ] = NULL;
 
 		environ = env;
-
 		return (0);
 	}
 	return (-1);
 }
+
