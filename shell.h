@@ -34,6 +34,7 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 int _strcmp(const char *s1, const char *s2);
 char *string_concat(char *str1, char *str2, char ch);
 char *_getenv(char *name);
+int strdiff (char *str1, char *str2);
 
 /** execution */
 void execute(char **, char **);
@@ -44,12 +45,15 @@ void (*get_built_in(char *name))(char **);
 void env_func(char **);
 void exit_func(char **);
 void setenv_func(char **);
+void unset_func(char **);
+void _cd(char **args);
 
 /** helpers */
 int handle_builtin(char **tokens);
 void free_tokens(char **tokens);
 int check_blank(char *);
 int _setenv(char *name, char *value, int overwrite);
+int _unset(char *name);
 
 /** _getline*/
 char *insertstring(char **dst, char *str);

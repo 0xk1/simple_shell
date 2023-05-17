@@ -82,3 +82,31 @@ int _setenv(char *name, char *value, int overwrite)
 	return (-1);
 }
 
+/**
+ * _unsetenv - unset a variable in environment
+ * @name : variable name
+ * Return : always 0
+*/
+
+int _unset(char *name)
+{
+	int i = 0, tst = 0;
+	int namelen = _strlen(name);
+
+	while (environ[i])
+	{
+		if (_strncmp(name, environ[i], namelen) == 0 && environ[i][namelen] == '=')
+		{
+			tst = 1;
+			break;
+		}
+		i++;
+	}
+	if (tst == 1)
+	{
+		for (;environ[i] != NULL; i++)
+			environ[i] = environ[i + 1];
+	}
+	return (0);
+}
+
