@@ -110,3 +110,10 @@ int _unset(char *name)
 	return (0);
 }
 
+
+
+void handler_function (int i __attribute__((unused)))
+{
+	_puts("\n$ ", 1);
+	return;
+}

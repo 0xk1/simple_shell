@@ -17,7 +17,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 			_puts(PROMPT, 1);
 		else
 			run = false;
-
+		signal(SIGINT, handler_function);
 		n_chars = _getline(&input, &n, stdin);
 		
 		if (n_chars == EOF)
@@ -28,9 +28,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 		}
 
 		if ((n_chars == 1 && input[0] == '\n') || check_blank(input) == 0)
-		{
 			continue;
-		}
 
 		tokens = parsing(input, " \t\n");
 
@@ -40,7 +38,6 @@ int main(int argc __attribute__((unused)), char *argv[])
 			return (0);
 		}
 		execute(tokens,argv);
-
 		free_tokens(tokens);
 		free(input);
 		input = NULL;

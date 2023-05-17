@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <stdbool.h>
+#include <signal.h>
 
 #define PROMPT "$ "
 
@@ -54,6 +55,7 @@ void free_tokens(char **tokens);
 int check_blank(char *);
 int _setenv(char *name, char *value, int overwrite);
 int _unset(char *name);
+void handler_function (int i);
 
 /** _getline*/
 char *insertstring(char **dst, char *str);
