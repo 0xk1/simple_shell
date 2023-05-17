@@ -56,3 +56,26 @@ void setenv_func(char **args)
 		_setenv(args[1], args[2], 0);
 	return;
 }
+
+void unset_func(char **args)
+{
+	int i = 0;
+	while (args[i])
+		i++;
+	if (i == 2)
+		_unset(args[1]);
+	return;
+}
+
+void _cd(char **args)
+{
+	int i = 0, check = 0;
+	while (args[i])
+		i++;
+	if (i == 2)
+		check = chdir(args[1]);
+	if (check == 0)
+		return;
+	else 
+		_puts("error", 2);
+}

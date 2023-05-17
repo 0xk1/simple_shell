@@ -1,23 +1,23 @@
 #include "shell.h"
 
-static int err_count = 0;
+static int err_count;
 
 void (*get_built_in(char *name))(char **)
 {
 	int i = 0;
-	int len = _strlen(name);
 
 	built_in_t built_in[] = {
 		{"exit", exit_func},
 		{"env", env_func},
 		{"setenv", setenv_func},
+		{"unset", unset_func},
+		{"cd", _cd},
 		{NULL, NULL}
 	};
 
 	while (built_in[i].name)
 	{
-
-		if (_strncmp(name, built_in[i].name, len) == 0 && (len == _strlen(built_in[i].name)))
+		if (_strcmp(name, built_in[i].name) == 0)
 			return (built_in[i].func);
 		i++;
 	}
