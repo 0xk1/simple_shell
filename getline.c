@@ -99,7 +99,6 @@ int check (char **buff, int n)
 	return (kn);
 }
 
-
 /**
  * _getline - prototype of getline
  * @line: the buffer to store the new line

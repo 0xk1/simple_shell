@@ -1,25 +1,29 @@
 #include "shell.h"
-char *input;
+
 /**
  * main - Entry point
+ * @argc : number of args
+ * @argv : args
  * Return: 0
  */
 int main(int argc __attribute__((unused)), char *argv[])
 {
-	char **tokens;
 	size_t n = 0;
 	ssize_t n_chars;
 	bool run = true;
+	char *input;
 
 	while (run)
 	{
 		if (isatty(STDIN_FILENO))
 			_puts(PROMPT, 1);
 		else
+		{
 			run = false;
+		}
 		signal(SIGINT, handler_function);
 		n_chars = _getline(&input, &n, stdin);
-		
+
 		if (n_chars == EOF)
 		{
 			_puts("\nExiting...\n", 1);
@@ -27,18 +31,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 			exit(EXIT_SUCCESS);
 		}
 
-		if ((n_chars == 1 && input[0] == '\n') || check_blank(input) == 0)
-			continue;
-
-		tokens = parsing(input, " \t\n");
-
-		if (!tokens)
-		{
-			perror("parsing failed");
-			return (0);
-		}
-		execute(tokens,argv);
-		free_tokens(tokens);
+		help_excute(input, argv);
 		free(input);
 		input = NULL;
 		n = 0;

@@ -38,9 +38,10 @@ char *_getenv(char *name);
 int strdiff (char *str1, char *str2);
 
 /** execution */
-void execute(char **, char **);
+void execute(char **tokens, char *argv[], int *err_count);
 char *handle_path(char *cmd);
 void (*get_built_in(char *name))(char **);
+int help_excute(char *input, char *argv[]);
 
 /** built in */
 void env_func(char **);

@@ -1,6 +1,14 @@
 #include "shell.h"
 
-static int err_count;
+
+/**
+ * none_func - this functions skips \n \t and blank command
+ * @args : usual args
+*/
+void none_func(char **args __attribute__((unused)))
+{
+	return;
+}
 
 void (*get_built_in(char *name))(char **)
 {
@@ -12,6 +20,7 @@ void (*get_built_in(char *name))(char **)
 		{"setenv", setenv_func},
 		{"unset", unset_func},
 		{"cd", _cd},
+		{"\t\t\t", none_func},
 		{NULL, NULL}
 	};
 
@@ -45,30 +54,28 @@ int handle_builtin(char **tokens)
  * @tokens: array of tokens
  */
 
-void execute(char **tokens, char *argv[])
+void execute(char **tokens, char *argv[], int *err_count)
 {
 	char *cmd = tokens[0], *path;
 	pid_t pid;
-
 	if (handle_builtin(tokens) == 0)
 	{
 		path = handle_path(cmd);
 		if (!path)
 		{
-			err_count++;
-			print_error(argv[0], err_count, cmd);
+			(*err_count)++;
+			print_error(argv[0], *err_count, cmd);
 			_puts(": not found\n", 2);
 			return;
 		}
-
 		pid = fork();
 		if (pid == 0)
 		{
 			if (execve(path, tokens, environ) == -1)
 			{
-				err_count++;
+				(*err_count)++;
 
-				print_error(argv[0], err_count, cmd);
+				print_error(argv[0], *err_count, cmd);
 				_puts(": ", 2);
 				perror("");
 				exit(EXIT_FAILURE);
@@ -78,7 +85,6 @@ void execute(char **tokens, char *argv[])
 			wait(NULL);
 		else
 			perror("fork() failed");
-
 		if (path != cmd)
 			free(path);
 	}
