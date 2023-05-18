@@ -1,6 +1,5 @@
 #include "shell.h"
 
-static int err_count;
 
 void (*get_built_in(char *name))(char **)
 {
@@ -33,8 +32,9 @@ int handle_builtin(char **tokens)
 	if (func)
 	{
 		func(tokens);
+		/**
  		if (_strcmp(tokens[0], "exit") == 0)
-				exit(0);
+				exit(0);*/
 		return (1);
 	}
 	return (0);

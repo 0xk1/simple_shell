@@ -12,7 +12,9 @@
 #include <signal.h>
 
 #define PROMPT "$ "
+#define SHELL_NAME "hsh"
 
+static int err_count __attribute__((unused));
 extern char **environ;
 
 
@@ -56,6 +58,8 @@ int check_blank(char *);
 int _setenv(char *name, char *value, int overwrite);
 int _unset(char *name);
 void handler_function (int i);
+/** helpers 2*/
+int _atoi(char *);
 
 /** _getline*/
 char *insertstring(char **dst, char *str);
@@ -70,5 +74,6 @@ void print_error(char *shell_name, int errno, char *cmd);
 char *_strtok(char *str, char *delim);
 char *get_next(char *str, char *delim);
 int char_in_delim(char c, char *delim);
+
 
 #endif
