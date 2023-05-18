@@ -35,7 +35,12 @@ void env_func(char **args)
 	while (args[i])
 		i++;
 	if (i > 1)
+	{
+		_puts("env: '", 2);
+		_puts(args[1], 2); 
+		_puts("': No such file or directory\n", 2);
 		return;
+	}
 
 	while (environ[i])
 	{
