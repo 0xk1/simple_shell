@@ -65,4 +65,9 @@ ssize_t _getline(char **line, size_t *n, FILE *fp);
 void print_int(int n);
 void print_error(char *shell_name, int errno, char *cmd);
 
+/** _strtok */
+
+char *_strtok(char *str, char *delim);
+char *get_next(char *str, char *delim);
+
 #endif
