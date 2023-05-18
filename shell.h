@@ -69,5 +69,6 @@ void print_error(char *shell_name, int errno, char *cmd);
 
 char *_strtok(char *str, char *delim);
 char *get_next(char *str, char *delim);
+int char_in_delim(char c, char *delim);
 
 #endif
