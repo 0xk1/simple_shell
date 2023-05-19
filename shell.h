@@ -60,6 +60,8 @@ int _unset(char *name);
 void handler_function (int i);
 /** helpers 2*/
 int _atoi(char *);
+void cd_home(char *);
+void set_old_pwd(char *);
 
 /** _getline*/
 char *insertstring(char **dst, char *str);
