@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * _atoi - converts string to an integer
+ * @nptr: string to be converted
+ * Return: converted integer value or -1
+ */
 
 int _atoi(char *nptr)
 {

@@ -25,6 +25,7 @@ char *_getenv(char *name)
  * string_concat - concat two strings
  * @str1: string 1
  * @str2: string 2
+ * @ch: character
  * Return: str1/str2
  */
 

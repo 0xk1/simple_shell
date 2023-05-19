@@ -7,7 +7,7 @@
 void exit_func(char **args)
 {
 	int i = 0;
-	
+
 	while (args[i])
 		i++;
 	if (i == 1)
@@ -36,13 +36,13 @@ void exit_func(char **args)
 void env_func(char **args)
 {
 	int i = 0;
-	
+
 	while (args[i])
 		i++;
 	if (i > 1)
 	{
 		_puts("env: '", 2);
-		_puts(args[1], 2); 
+		_puts(args[1], 2);
 		_puts("': No such file or directory\n", 2);
 		return;
 	}
@@ -56,37 +56,49 @@ void env_func(char **args)
 
 }
 
-
+/**
+ * setenv_func - built-in setenv
+ * @args: tokens
+ */
 void setenv_func(char **args)
 {
 	int i = 0;
+
 	while (args[i])
 		i++;
 	if (i == 3)
 		_setenv(args[1], args[2], 0);
-	return;
 }
+
+/**
+ * unset_func - built-in unsetenv
+ * @args: tokens
+ */
 
 void unset_func(char **args)
 {
 	int i = 0;
+
 	while (args[i])
 		i++;
 	if (i == 2)
 		_unset(args[1]);
-	return;
 }
 
+/**
+ * _cd - built-in cd
+ * @args: tokens
+ */
 void _cd(char **args)
 {
 	int i = 0, check = 0;
+
 	while (args[i])
 		i++;
 	if (i == 2)
 		check = chdir(args[1]);
 	if (check == 0)
 		return;
-	else 
-		_puts("error", 2);
+	_puts("error", 2);
 }
 

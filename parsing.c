@@ -3,6 +3,7 @@
 /**
  * parsing - function that tokonize a string
  * @input: string to tokenize
+ * @delimiter: delimiter
  * Return: Array of tokens
  */
 char **parsing(char *input, char *delimiter)

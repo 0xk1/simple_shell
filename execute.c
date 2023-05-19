@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * get_built_in - return pointer to a built in func based on its name
+ * @name: name of built-in
+ * Return: pointer to the matching built-in function or null
+ */
 
 void (*get_built_in(char *name))(char **)
 {
@@ -24,6 +29,11 @@ void (*get_built_in(char *name))(char **)
 	return (NULL);
 }
 
+/**
+ * handle_builtin - handle_builtin
+ * @tokens: tokens
+ * Return: 1 or 0
+ */
 int handle_builtin(char **tokens)
 {
 	void (*func)(char **);
@@ -32,9 +42,6 @@ int handle_builtin(char **tokens)
 	if (func)
 	{
 		func(tokens);
-		/**
- 		if (_strcmp(tokens[0], "exit") == 0)
-				exit(0);*/
 		return (1);
 	}
 	return (0);
@@ -43,6 +50,7 @@ int handle_builtin(char **tokens)
 /**
  * execute - function that execute commands
  * @tokens: array of tokens
+ * @argv: argv
  */
 
 void execute(char **tokens, char *argv[])
@@ -84,6 +92,12 @@ void execute(char **tokens, char *argv[])
 	}
 }
 
+/**
+ * print_error - helper function to print errors
+ * @shell_name: shell name
+ * @errno: error number
+ * @cmd: command
+ */
 void print_error(char *shell_name, int errno, char *cmd)
 {
 	_puts(shell_name, 2);

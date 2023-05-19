@@ -3,6 +3,7 @@
 /**
  * _putchar - print char
  * @c: char to print
+ * @buffer: buffer
  * Return: 1 or -1
  */
 int _putchar(char c, int buffer)
@@ -13,6 +14,7 @@ int _putchar(char c, int buffer)
 /**
  * _puts - prints a string
  * @s: string
+ * @buffer: buffer
  */
 void _puts(char *s, int buffer)
 {
@@ -91,6 +93,6 @@ char *_strdup(char *s)
 
 	_strcpy(copy, s);
 
-/* 	s[len] = '\0';*/
+	/*s[len] = '\0';*/
 	return (copy);
 }

@@ -1,12 +1,13 @@
 #include "shell.h"
-char *input;
 /**
  * main - Entry point
  * Return: 0
+ * @argc: argc
+ * @argv: argv
  */
 int main(int argc __attribute__((unused)), char *argv[])
 {
-	char **tokens;
+	char **tokens, *input;
 	size_t n = 0;
 	ssize_t n_chars;
 	bool run = true;
@@ -19,7 +20,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 			run = false;
 		signal(SIGINT, handler_function);
 		n_chars = _getline(&input, &n, stdin);
-		
+
 		if (n_chars == EOF)
 		{
 			_puts("\nExiting...\n", 1);
@@ -37,7 +38,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 			perror("parsing failed");
 			return (0);
 		}
-		execute(tokens,argv);
+		execute(tokens, argv);
 		free_tokens(tokens);
 		free(input);
 		input = NULL;
