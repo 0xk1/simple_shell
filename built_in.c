@@ -123,6 +123,7 @@ void _cd(char **args)
 					_puts(buff, 2);
 					_puts("\n", 2);
 				}
+				_setenv("PWD", buff, 0);
 				return;
 			}
 		}
