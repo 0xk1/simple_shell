@@ -17,12 +17,12 @@ char **parsing(char *input, char *delimiter)
 	if (!input_copy)
 		return (NULL);
 
-	token = _strtok(input, delimiter);
+	token = strtok(input, delimiter);
 
 	while (token)
 	{
 		num_tokens++;
-		token = _strtok(NULL, delimiter);
+		token = strtok(NULL, delimiter);
 	}
 	num_tokens++;
 
@@ -34,13 +34,13 @@ char **parsing(char *input, char *delimiter)
 		return (NULL);
 	}
 
-	token = _strtok(input_copy, delimiter);
+	token = strtok(input_copy, delimiter);
 
 	while (token)
 	{
 		tokens[i] = _strdup(token);
 
-		token = _strtok(NULL, delimiter);
+		token = strtok(NULL, delimiter);
 		i++;
 	}
 	tokens[i] = NULL;
