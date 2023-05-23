@@ -7,7 +7,7 @@
  */
 int main(int argc __attribute__((unused)), char *argv[])
 {
-	char **tokens, *input;
+	char **tokens, *input = NULL;
 	size_t n = 0;
 	ssize_t n_chars;
 	bool run = true;
@@ -19,7 +19,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 		else
 			run = false;
 		signal(SIGINT, handler_function);
-		n_chars = _getline(&input, &n, stdin);
+		n_chars = getline(&input, &n, stdin);
 
 		if (n_chars == EOF)
 		{
