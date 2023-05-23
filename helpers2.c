@@ -44,7 +44,7 @@ void cd_home(char *buff)
 	}
 }
 /**
- * set_old_pwd: set the OLDPWD variable if not exists
+ * set_old_pwd - set the OLDPWD variable if not exists
  * @buff: buffer
  */
 

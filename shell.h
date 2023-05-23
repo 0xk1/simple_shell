@@ -17,7 +17,6 @@
 static int err_count __attribute__((unused));
 extern char **environ;
 
-
 typedef struct built_in
 {
 	char *name;
