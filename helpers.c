@@ -16,15 +16,16 @@ void free_tokens(char **tokens)
 
 /**
  * check_blank - check if a string is made of only blank spaces
- * @imput : the imput
+ * @input: the input
  * Return: return 0 if its blank or 1 if its not
 */
-int check_blank(char *inmput)
+int check_blank(char *input)
 {
 	int i = 0;
-	while (inmput[i] != '\n')
+
+	while (input[i] != '\n')
 	{
-		if (inmput[i] == ' ' || inmput[i] == '\t')
+		if (input[i] == ' ' || input[i] == '\t')
 			i++;
 		else
 			return (1);
@@ -34,10 +35,10 @@ int check_blank(char *inmput)
 
 /**
  * _setenv - set an environment variable
- * @name : variable name
- * @value : the new value
- * @overwrite : if overwrite = 0 the value will be overwritten
- * @Return: return 0 on success -1 on any faillure
+ * @name: variable name
+ * @value: the new value
+ * @overwrite: if overwrite = 0 the value will be overwritten
+ * Return: return 0 on success -1 on any faillure
 */
 
 int _setenv(char *name, char *value, int overwrite)
@@ -45,7 +46,6 @@ int _setenv(char *name, char *value, int overwrite)
 	char **env;
 	int i = 0, tst = 0, j = 0;/*tst - test if "name" is a varibale path*/
 	int namelen = _strlen(name);
-
 
 	while (environ[i])
 	{
@@ -68,13 +68,15 @@ int _setenv(char *name, char *value, int overwrite)
 		/*getting env lengh*/
 		while (environ[ln] != NULL)
 			ln++;
- 		env = malloc(8 * (ln + 2));
-		/*copying environ into env*/
-  		for (;environ[j] != NULL; j++)
+
+		env = malloc(8 * (ln + 2));
+
+		/**copying environ into env*/
+		for (j = 0; environ[j] != NULL; j++)
 			env[j] = environ[j];
-		/*setting the new environemnt variable*/
+		/**setting the new environemnt variable*/
 		env[j] = string_concat(name, value, '=');
-		env[j + 1 ] = NULL;
+		env[j + 1] = NULL;
 
 		environ = env;
 		return (0);
@@ -83,9 +85,9 @@ int _setenv(char *name, char *value, int overwrite)
 }
 
 /**
- * _unsetenv - unset a variable in environment
- * @name : variable name
- * Return : always 0
+ * _unset - unset a variable in environment
+ * @name: variable name
+ * Return: always 0
 */
 
 int _unset(char *name)
@@ -104,16 +106,18 @@ int _unset(char *name)
 	}
 	if (tst == 1)
 	{
-		for (;environ[i] != NULL; i++)
+		for (; environ[i] != NULL; i++)
 			environ[i] = environ[i + 1];
 	}
 	return (0);
 }
 
 
-
-void handler_function (int i __attribute__((unused)))
+/**
+ * handler_function - handler function
+ * @i: i
+ */
+void handler_function(int i __attribute__((unused)))
 {
 	_puts("\n$ ", 1);
-	return;
 }

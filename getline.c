@@ -59,7 +59,7 @@ char *insertstring(char **dst, char *str)
  * @n: number of characters read in (read)
  * Return: 0 if it doesnt 1 if it does
 */
-int check (char **buff, int n)
+int check(char **buff, int n)
 {
 	int i = 0, j = 0;
 	int kn = 0;
@@ -71,7 +71,7 @@ int check (char **buff, int n)
 		{
 			kn = 1;
 			break;
-		}	
+		}
 		i++;
 	}
 	if (kn == 1)
@@ -93,11 +93,10 @@ int check (char **buff, int n)
 		free(copybuff);
 	}
 	if (kn == 0 && n < 1024)
-		{
-			kn = 1;
-		}
+		kn = 1;
 	return (kn);
 }
+
 
 /**
  * _getline - prototype of getline

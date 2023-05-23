@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * get_built_in - return pointer to a built in func based on its name
+ * @name: name of built-in
+ * Return: pointer to the matching built-in function or null
+ */
 
 void (*get_built_in(char *name))(char **)
 {
@@ -11,7 +16,6 @@ void (*get_built_in(char *name))(char **)
 		{"setenv", setenv_func},
 		{"unset", unset_func},
 		{"cd", _cd},
-		{"\t\t\t", none_func},
 		{NULL, NULL}
 	};
 
@@ -25,6 +29,11 @@ void (*get_built_in(char *name))(char **)
 	return (NULL);
 }
 
+/**
+ * handle_builtin - handle_builtin
+ * @tokens: tokens
+ * Return: 1 or 0
+ */
 int handle_builtin(char **tokens)
 {
 	void (*func)(char **);
@@ -33,9 +42,6 @@ int handle_builtin(char **tokens)
 	if (func)
 	{
 		func(tokens);
-		/**
- 		if (_strcmp(tokens[0], "exit") == 0)
-				exit(0);*/
 		return (1);
 	}
 	return (0);
@@ -44,30 +50,33 @@ int handle_builtin(char **tokens)
 /**
  * execute - function that execute commands
  * @tokens: array of tokens
+ * @argv: argv
  */
 
-void execute(char **tokens, char *argv[], int *err_count)
+void execute(char **tokens, char *argv[])
 {
 	char *cmd = tokens[0], *path;
 	pid_t pid;
+
 	if (handle_builtin(tokens) == 0)
 	{
 		path = handle_path(cmd);
 		if (!path)
 		{
-			(*err_count)++;
-			print_error(argv[0], *err_count, cmd);
+			err_count++;
+			print_error(argv[0], err_count, cmd);
 			_puts(": not found\n", 2);
 			return;
 		}
+
 		pid = fork();
 		if (pid == 0)
 		{
 			if (execve(path, tokens, environ) == -1)
 			{
-				(*err_count)++;
+				err_count++;
 
-				print_error(argv[0], *err_count, cmd);
+				print_error(argv[0], err_count, cmd);
 				_puts(": ", 2);
 				perror("");
 				exit(EXIT_FAILURE);
@@ -77,11 +86,18 @@ void execute(char **tokens, char *argv[], int *err_count)
 			wait(NULL);
 		else
 			perror("fork() failed");
+
 		if (path != cmd)
 			free(path);
 	}
 }
 
+/**
+ * print_error - helper function to print errors
+ * @shell_name: shell name
+ * @errno: error number
+ * @cmd: command
+ */
 void print_error(char *shell_name, int errno, char *cmd)
 {
 	_puts(shell_name, 2);

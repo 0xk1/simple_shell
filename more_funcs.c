@@ -51,7 +51,6 @@ int _strcmp(const char *s1, const char *s2)
 
 void print_int(int n)
 {
-	
 	if (n >= 0 && n <= 9)
 		_putchar(n + '0', 2);
 	else

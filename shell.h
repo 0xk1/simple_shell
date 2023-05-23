@@ -17,7 +17,11 @@
 static int err_count __attribute__((unused));
 extern char **environ;
 
-
+/**
+ * struct built_in - built_in struct
+ * @name: built in function name
+ * @func: function associated
+ */
 typedef struct built_in
 {
 	char *name;
@@ -37,13 +41,12 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 int _strcmp(const char *s1, const char *s2);
 char *string_concat(char *str1, char *str2, char ch);
 char *_getenv(char *name);
-int strdiff (char *str1, char *str2);
+int strdiff(char *str1, char *str2);
 
 /** execution */
-void execute(char **tokens, char *argv[], int *err_count);
+void execute(char **, char **);
 char *handle_path(char *cmd);
 void (*get_built_in(char *name))(char **);
-int help_excute(char *input, char *argv[]);
 
 /** built in */
 void env_func(char **);
@@ -58,9 +61,11 @@ void free_tokens(char **tokens);
 int check_blank(char *);
 int _setenv(char *name, char *value, int overwrite);
 int _unset(char *name);
-void handler_function (int i);
+void handler_function(int i);
 /** helpers 2*/
 int _atoi(char *);
+void cd_home(char *);
+void set_old_pwd(char *);
 
 /** _getline*/
 char *insertstring(char **dst, char *str);
