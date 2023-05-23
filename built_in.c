@@ -15,12 +15,17 @@ void exit_func(char **args)
 		free_tokens(args);
 		exit(0);
 	}
-	else
+	if (_atoi(args[1]) == -1)
 	{
-		_puts("to much arguments for exit command\n", 2);
+		_puts(SHELL_NAME, 2);
+		_puts(": ", 2);
+		print_int(err_count);
+		_puts(": exit: Illegal number: ", 2);
+		_puts(args[1], 2);
+		_puts("\n", 2);
 		return;
 	}
-
+	exit(_atoi(args[1]));
 }
 
 /**
@@ -35,7 +40,12 @@ void env_func(char **args)
 	while (args[i])
 		i++;
 	if (i > 1)
+	{
+		_puts("env: '", 2);
+		_puts(args[1], 2); 
+		_puts("': No such file or directory\n", 2);
 		return;
+	}
 
 	while (environ[i])
 	{

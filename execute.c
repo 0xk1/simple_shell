@@ -1,15 +1,6 @@
 #include "shell.h"
 
 
-/**
- * none_func - this functions skips \n \t and blank command
- * @args : usual args
-*/
-void none_func(char **args __attribute__((unused)))
-{
-	return;
-}
-
 void (*get_built_in(char *name))(char **)
 {
 	int i = 0;
@@ -42,8 +33,9 @@ int handle_builtin(char **tokens)
 	if (func)
 	{
 		func(tokens);
+		/**
  		if (_strcmp(tokens[0], "exit") == 0)
-				exit(0);
+				exit(0);*/
 		return (1);
 	}
 	return (0);
