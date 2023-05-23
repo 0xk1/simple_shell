@@ -31,7 +31,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 		if ((n_chars == 1 && input[0] == '\n') || check_blank(input) == 0)
 			continue;
 
-		tokens = parsing(input, " \t\n");
+		tokens = parsing(input, " \t\n\"\'");
 
 		if (!tokens)
 		{
