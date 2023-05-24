@@ -60,3 +60,11 @@ void set_old_pwd(char *buff)
 		perror("getcwd");
 	chdir(temp);
 }
+
+
+char **cmds(char *imput)
+{
+	char **cmds_ar;
+	cmds_ar = parsing(imput, "\n");
+	return (cmds_ar);
+}

@@ -47,6 +47,7 @@ int strdiff(char *str1, char *str2);
 void execute(char **, char **, char *);
 char *handle_path(char *cmd);
 int (*get_built_in(char *name))(char **, char *input);
+char **cmds(char *imput);
 
 /** built in */
 int env_func(char **, char *);
