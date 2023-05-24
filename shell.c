@@ -34,7 +34,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 		if (!tokens)
 		{
 			perror("parsing failed");
-			return (0);
+			return (2);
 		}
 		execute(tokens, argv, input);
 		free_tokens(tokens);
@@ -44,7 +44,9 @@ int main(int argc __attribute__((unused)), char *argv[])
 			input = NULL;
 		}
 		n = 0;
+		
+
 	}
 	free(input);
-	return (2);
+	return (0);
 }
