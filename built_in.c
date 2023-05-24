@@ -78,6 +78,7 @@ int setenv_func(char **args, char *input)
 		i++;
 	if (i == 3)
 		_setenv(args[1], args[2], 0);
+	env_func(args, input);
 	return (0);
 }
 
