@@ -1,1 +1,4 @@
 hsh
+*.bash
+*.Identifier
+.gitignore
