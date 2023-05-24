@@ -67,6 +67,9 @@ char *_strtok(char *str, char *delim)
 			return (NULL);
 	}
 
+	while (*str && *str == ' ')
+		str++;
+
 	next = get_next(str, delim);
 
 	return (str);
