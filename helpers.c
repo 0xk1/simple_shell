@@ -43,7 +43,9 @@ int check_blank(char *input)
 
 int _setenv(char *name, char *value, int overwrite)
 {
-	char env[50][2000];
+	char *env[50];
+	char env_v[2000],env_g[2000];
+	char eng[50][2000];
 	int i = 0, tst = 0, j = 0;/*tst - test if "name" is a varibale path*/
 	int namelen = _strlen(name);
 
@@ -59,7 +61,7 @@ int _setenv(char *name, char *value, int overwrite)
 	if (tst == 1)
 	{
 		if (overwrite == 0)
-			strenv(env[0], name, value);
+			env[0] = strenv(env_g, name, value);
 		environ[i] = env[0];
 		return (0);
 	}
@@ -69,13 +71,12 @@ int _setenv(char *name, char *value, int overwrite)
 		/*getting env lengh*/
 		while (environ[ln] != NULL)
 			ln++;
-
 		/**copying environ into env*/
 		for (j = 0; environ[j] != NULL; j++)
-			_strcpy(env[j], environ[j]);
+			env[j] = _strcpy(eng[j], environ[j]);
 		/**setting the new environemnt variable*/
-		strenv(env[j], name, value);
-/* 		environ = env; */
+		env[j] = strenv(env_v, name, value);
+ 		environ = env;
 		return (0);
 	}
 	return (-1);
