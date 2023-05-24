@@ -9,6 +9,7 @@
 int exit_func(char **args, char *input)
 {
 	int i = 0;
+	int exit_code;
 
 	while (args[i])
 		i++;
@@ -28,7 +29,10 @@ int exit_func(char **args, char *input)
 		_puts("\n", 2);
 		return (-1);
 	}
-	exit(_atoi(args[1]));
+	exit_code = _atoi(args[1]);
+	free(input);
+	free_tokens(args);
+	exit(exit_code);
 	return (0);
 }
 
