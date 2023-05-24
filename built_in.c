@@ -137,7 +137,7 @@ int _cd(char **args, char *input __attribute__((unused)))
 			_setenv("OLDPWD", _getenv("PWD"), 0);
 			if (getcwd(buff, sizeof(buff)) != NULL)
 			{
-				if (strcmp(args[1], "-") == 0)
+				if (_strcmp(args[1], "-") == 0)
 				{
 					_puts(buff, 2);
 					_puts("\n", 2);
