@@ -25,7 +25,7 @@ extern char **environ;
 typedef struct built_in
 {
 	char *name;
-	void (*func)(char **);
+	void (*func)(char **, char *);
 } built_in_t;
 
 /** parsing */
@@ -44,19 +44,19 @@ char *_getenv(char *name);
 int strdiff(char *str1, char *str2);
 
 /** execution */
-void execute(char **, char **);
+void execute(char **, char **, char *);
 char *handle_path(char *cmd);
-void (*get_built_in(char *name))(char **);
+void (*get_built_in(char *name))(char **, char *input);
 
 /** built in */
-void env_func(char **);
-void exit_func(char **);
-void setenv_func(char **);
-void unset_func(char **);
-void _cd(char **args);
+void env_func(char **, char *);
+void exit_func(char **, char *);
+void setenv_func(char **, char *);
+void unset_func(char **, char *);
+void _cd(char **args, char *);
 
 /** helpers */
-int handle_builtin(char **tokens);
+int handle_builtin(char **tokens, char *input);
 void free_tokens(char **tokens);
 int check_blank(char *);
 int _setenv(char *name, char *value, int overwrite);

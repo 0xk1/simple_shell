@@ -6,7 +6,7 @@
  * Return: pointer to the matching built-in function or null
  */
 
-void (*get_built_in(char *name))(char **)
+void (*get_built_in(char *name))(char **, char *)
 {
 	int i = 0;
 
@@ -32,16 +32,17 @@ void (*get_built_in(char *name))(char **)
 /**
  * handle_builtin - handle_builtin
  * @tokens: tokens
+ * @input: input
  * Return: 1 or 0
  */
-int handle_builtin(char **tokens)
+int handle_builtin(char **tokens, char *input)
 {
-	void (*func)(char **);
+	void (*func)(char **, char *);
 
 	func = get_built_in(tokens[0]);
 	if (func)
 	{
-		func(tokens);
+		func(tokens, input);
 		return (1);
 	}
 	return (0);
@@ -50,15 +51,16 @@ int handle_builtin(char **tokens)
 /**
  * execute - function that execute commands
  * @tokens: array of tokens
+ * @input: input
  * @argv: argv
  */
 
-void execute(char **tokens, char *argv[])
+void execute(char **tokens, char *argv[], char *input)
 {
 	char *cmd = tokens[0], *path;
 	pid_t pid;
 
-	if (handle_builtin(tokens) == 0)
+	if (handle_builtin(tokens, input) == 0)
 	{
 		path = handle_path(cmd);
 		if (!path)
