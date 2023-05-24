@@ -32,7 +32,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 		if ((n_chars == 1 && input[0] == '\n') || check_blank(input) == 0)
 			continue;
 
-		ar_cmds = cmds(input);
+		ar_cmds = parsing(input, "\n");
 		while (ar_cmds[i] != NULL)
 		{
 			tokens = parsing(ar_cmds[i], " \t\n\"\'");
@@ -44,14 +44,17 @@ int main(int argc __attribute__((unused)), char *argv[])
 			execute(tokens, argv, input);
 			free_tokens(tokens);
 			i++;
+		
+			if (input)
+			{
+				free(input);
+				input = NULL;
+			}
+			
+			free_tokens(ar_cmds);
+			ar_cmds = NULL;
+			n = 0;
 		}
-		if (input)
-		{
-			free(input);
-			input = NULL;
-		}
-		free_tokens(ar_cmds);
-		n = 0;
 	}
 	free(input);
 	return (0);
