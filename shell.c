@@ -46,5 +46,5 @@ int main(int argc __attribute__((unused)), char *argv[])
 		n = 0;
 	}
 	free(input);
-	return (0);
+	return (2);
 }

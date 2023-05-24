@@ -81,7 +81,7 @@ void execute(char **tokens, char *argv[], char *input)
 				print_error(argv[0], err_count, cmd);
 				_puts(": ", 2);
 				perror("");
-				exit(EXIT_FAILURE);
+				exit(0);
 			}
 		}
 		else if (pid > 0)
