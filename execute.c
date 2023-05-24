@@ -6,7 +6,7 @@
  * Return: pointer to the matching built-in function or null
  */
 
-void (*get_built_in(char *name))(char **, char *)
+int (*get_built_in(char *name))(char **, char *)
 {
 	int i = 0;
 
@@ -37,7 +37,7 @@ void (*get_built_in(char *name))(char **, char *)
  */
 int handle_builtin(char **tokens, char *input)
 {
-	void (*func)(char **, char *);
+	int (*func)(char **, char *);
 
 	func = get_built_in(tokens[0]);
 	if (func)
