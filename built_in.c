@@ -48,25 +48,17 @@ int env_func(char **args, char *input)
 	int i = 0;
 
 	(void)input;
+	(void)args;
 
-	while (args[i])
-		i++;
-	if (i > 1)
+	if (!environ)
+		return (0);
+
+	for (; environ[i] != NULL; i++)
 	{
-		_puts("env: '", 2);
-		_puts(args[1], 2);
-		_puts("': No such file or directory\n", 2);
-		return (-1);
+		_puts(environ[i], 1);
+		_putchar('\n', 1);
 	}
 
-	while (environ[i])
-	{
-		_puts(environ[i] ? environ[i] : "(nil)", 1);
-		_puts("\n", 1);
-		i++;
-	}
-	_puts("SHELL=/bin/bash", 1);
-	_puts("\n", 1);
 	return (0);
 }
 

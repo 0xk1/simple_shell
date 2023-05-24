@@ -44,7 +44,7 @@ int handle_builtin(char **tokens, char *input)
 	{
 		return (func(tokens, input));
 	}
-	return (0);
+	return (-1);
 }
 
 /**
@@ -59,8 +59,11 @@ void execute(char **tokens, char *argv[], char *input, int *status)
 {
 	char *cmd = tokens[0], *path;
 	pid_t pid;
+	int st_helper;
 
-	if (handle_builtin(tokens, input) == 0)
+	st_helper = handle_builtin(tokens, input);
+
+	if (st_helper == -1)
 	{
 		path = handle_path(cmd);
 		if (!path)
@@ -96,7 +99,7 @@ void execute(char **tokens, char *argv[], char *input, int *status)
 			free(path);
 	}
 	else
-		*status = 2;
+		*status = st_helper;
 }
 
 /**
