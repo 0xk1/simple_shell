@@ -26,7 +26,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 		{
 			_puts("\nExiting...\n", 1);
 			free(input);
-			exit(EXIT_SUCCESS);
+			exit(status);
 		}
 		if ((n_chars == 1 && input[0] == '\n') || check_blank(input) == 0)
 			continue;

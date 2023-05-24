@@ -27,7 +27,7 @@ int exit_func(char **args, char *input)
 		_puts(": exit: Illegal number: ", 2);
 		_puts(args[1], 2);
 		_puts("\n", 2);
-		return (-1);
+		return (2);
 	}
 	exit_code = _atoi(args[1]);
 	free(input);

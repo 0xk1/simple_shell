@@ -42,8 +42,7 @@ int handle_builtin(char **tokens, char *input)
 	func = get_built_in(tokens[0]);
 	if (func)
 	{
-		func(tokens, input);
-		return (1);
+		return (func(tokens, input));
 	}
 	return (0);
 }
@@ -96,6 +95,8 @@ void execute(char **tokens, char *argv[], char *input, int *status)
 		if (path != cmd)
 			free(path);
 	}
+	else
+		*status = 2;
 }
 
 /**
