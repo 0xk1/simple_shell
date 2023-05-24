@@ -5,7 +5,7 @@
  * @args: tokens
  * @input: input
  */
-void exit_func(char **args, char *input)
+int exit_func(char **args, char *input)
 {
 	int i = 0;
 
@@ -25,9 +25,10 @@ void exit_func(char **args, char *input)
 		_puts(": exit: Illegal number: ", 2);
 		_puts(args[1], 2);
 		_puts("\n", 2);
-		return;
+		return (-1);
 	}
 	exit(_atoi(args[1]));
+	return (0);
 }
 
 /**
@@ -36,7 +37,7 @@ void exit_func(char **args, char *input)
  * @input: input
  */
 
-void env_func(char **args, char *input)
+int env_func(char **args, char *input)
 {
 	int i = 0;
 
@@ -49,16 +50,16 @@ void env_func(char **args, char *input)
 		_puts("env: '", 2);
 		_puts(args[1], 2);
 		_puts("': No such file or directory\n", 2);
-		return;
+		return (-1);
 	}
 
 	while (environ[i])
 	{
-		_puts(environ[i], 1);
+		_puts(environ[i] ? environ[i] : "(nil)", 1);
 		_puts("\n", 1);
 		i++;
 	}
-
+	return (0);
 }
 
 /**
@@ -66,7 +67,7 @@ void env_func(char **args, char *input)
  * @args: tokens
  * @input: input
  */
-void setenv_func(char **args, char *input)
+int setenv_func(char **args, char *input)
 {
 	int i = 0;
 
@@ -76,6 +77,7 @@ void setenv_func(char **args, char *input)
 		i++;
 	if (i == 3)
 		_setenv(args[1], args[2], 0);
+	return (0);
 }
 
 /**
@@ -84,7 +86,7 @@ void setenv_func(char **args, char *input)
  * @input: input
  */
 
-void unset_func(char **args, char *input)
+int unset_func(char **args, char *input)
 {
 	int i = 0;
 
@@ -94,6 +96,7 @@ void unset_func(char **args, char *input)
 		i++;
 	if (i == 2)
 		_unset(args[1]);
+	return (0);
 }
 
 /**
@@ -101,7 +104,7 @@ void unset_func(char **args, char *input)
  * @args: tokens
  * @input: input
  */
-void _cd(char **args, char *input __attribute__((unused)))
+int _cd(char **args, char *input __attribute__((unused)))
 {
 	int i = 0, check = 0;
 	char buff[1024];
@@ -115,7 +118,7 @@ void _cd(char **args, char *input __attribute__((unused)))
 	if (i == 1)
 	{
 		cd_home(buff);
-		return;
+		return (0);
 	}
 	if (i == 2)
 	{
@@ -136,12 +139,13 @@ void _cd(char **args, char *input __attribute__((unused)))
 					_puts("\n", 2);
 				}
 				_setenv("PWD", buff, 0);
-				return;
+				return (0);
 			}
 		}
 	}
 	_puts("hsh: 1: cd: can't cd to ", 2);
 	_puts(args[1], 2);
 	_puts("\n", 2);
+	return (0);
 }
 
