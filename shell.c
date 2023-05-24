@@ -11,7 +11,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 	size_t n = 0;
 	ssize_t n_chars;
 	bool run = true;
-	int status = 2;
+	int status = 0;
 
 	while (run)
 	{
