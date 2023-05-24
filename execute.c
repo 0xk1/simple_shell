@@ -77,7 +77,6 @@ void execute(char **tokens, char *argv[], char *input)
 			if (execve(path, tokens, environ) == -1)
 			{
 				err_count++;
-
 				print_error(argv[0], err_count, cmd);
 				_puts(": ", 2);
 				perror("");

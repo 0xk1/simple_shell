@@ -29,14 +29,14 @@ int main(int argc __attribute__((unused)), char *argv[])
 		}
 		if ((n_chars == 1 && input[0] == '\n') || check_blank(input) == 0)
 			continue;
-
-		tokens = parsing(input, " \t\n\"\'");
+		tokens = parsing(input, " \t\"\'\n\b");
 		if (!tokens)
 		{
 			perror("parsing failed");
 			return (2);
 		}
 		execute(tokens, argv, input);
+
 		free_tokens(tokens);
 		if (input)
 		{
@@ -44,9 +44,8 @@ int main(int argc __attribute__((unused)), char *argv[])
 			input = NULL;
 		}
 		n = 0;
-		
-
 	}
 	free(input);
 	return (0);
 }
+

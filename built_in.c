@@ -4,6 +4,7 @@
  * exit_func - built in exit
  * @args: tokens
  * @input: input
+ * Return: int
  */
 int exit_func(char **args, char *input)
 {
@@ -35,6 +36,7 @@ int exit_func(char **args, char *input)
  * env_func - built in env
  * @args: tokens
  * @input: input
+ * Return: int
  */
 
 int env_func(char **args, char *input)
@@ -66,6 +68,7 @@ int env_func(char **args, char *input)
  * setenv_func - built-in setenv
  * @args: tokens
  * @input: input
+ * Return: int
  */
 int setenv_func(char **args, char *input)
 {
@@ -84,6 +87,7 @@ int setenv_func(char **args, char *input)
  * unset_func - built-in unsetenv
  * @args: tokens
  * @input: input
+ * Return: int
  */
 
 int unset_func(char **args, char *input)
@@ -103,6 +107,7 @@ int unset_func(char **args, char *input)
  * _cd - built-in cd
  * @args: tokens
  * @input: input
+ * Return: int
  */
 int _cd(char **args, char *input __attribute__((unused)))
 {
@@ -111,7 +116,6 @@ int _cd(char **args, char *input __attribute__((unused)))
 
 	while (args[i])
 		i++;
-
 	if (!_getenv("OLDPWD"))
 		set_old_pwd(buff);
 
