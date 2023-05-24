@@ -61,10 +61,29 @@ void set_old_pwd(char *buff)
 	chdir(temp);
 }
 
-
-char **cmds(char *imput)
+char *strenv(char *env, char *variable, char *value)
 {
-	char **cmds_ar;
-	cmds_ar = parsing(imput, "\n");
-	return (cmds_ar);
+	int j = 0, i = 0, len_var, len_value;
+
+	if (!variable)
+		return (0);
+
+	len_value = _strlen(value);
+	len_var = _strlen(variable);
+	while (i < len_var)
+	{
+		env[i] = variable[i];
+		i++;
+	}
+	env[i] = '=';
+	i++;
+	while (j < len_value)
+	{
+		env[i] = value[j];
+		j++;
+		i++;
+	}
+	env[i] = '\0';
+
+	return (env);
 }

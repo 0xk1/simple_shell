@@ -4,6 +4,7 @@
  * exit_func - built in exit
  * @args: tokens
  * @input: input
+ * Return: int
  */
 int exit_func(char **args, char *input)
 {
@@ -25,15 +26,17 @@ int exit_func(char **args, char *input)
 		_puts(": exit: Illegal number: ", 2);
 		_puts(args[1], 2);
 		_puts("\n", 2);
-		return (0);
+		return (-1);
 	}
 	exit(_atoi(args[1]));
+	return (0);
 }
 
 /**
  * env_func - built in env
  * @args: tokens
  * @input: input
+ * Return: int
  */
 
 int env_func(char **args, char *input)
@@ -49,23 +52,25 @@ int env_func(char **args, char *input)
 		_puts("env: '", 2);
 		_puts(args[1], 2);
 		_puts("': No such file or directory\n", 2);
-		return (0);
+		return (-1);
 	}
 
 	while (environ[i])
 	{
-		_puts(environ[i], 1);
+		_puts(environ[i] ? environ[i] : "(nil)", 1);
 		_puts("\n", 1);
 		i++;
 	}
+	_puts("SHELL=/bin/bash", 1);
+	_puts("\n", 1);
 	return (0);
-
 }
 
 /**
  * setenv_func - built-in setenv
  * @args: tokens
  * @input: input
+ * Return: int
  */
 int setenv_func(char **args, char *input)
 {
@@ -84,6 +89,7 @@ int setenv_func(char **args, char *input)
  * unset_func - built-in unsetenv
  * @args: tokens
  * @input: input
+ * Return: int
  */
 
 int unset_func(char **args, char *input)
@@ -103,6 +109,7 @@ int unset_func(char **args, char *input)
  * _cd - built-in cd
  * @args: tokens
  * @input: input
+ * Return: int
  */
 int _cd(char **args, char *input __attribute__((unused)))
 {
@@ -111,7 +118,6 @@ int _cd(char **args, char *input __attribute__((unused)))
 
 	while (args[i])
 		i++;
-
 	if (!_getenv("OLDPWD"))
 		set_old_pwd(buff);
 

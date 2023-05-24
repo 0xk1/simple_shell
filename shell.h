@@ -44,10 +44,9 @@ char *_getenv(char *name);
 int strdiff(char *str1, char *str2);
 
 /** execution */
-void execute(char **, char **, char *);
+void execute(char **, char **, char *, int *);
 char *handle_path(char *cmd);
 int (*get_built_in(char *name))(char **, char *input);
-char **cmds(char *imput);
 
 /** built in */
 int env_func(char **, char *);
@@ -67,6 +66,7 @@ void handler_function(int i);
 int _atoi(char *);
 void cd_home(char *);
 void set_old_pwd(char *);
+char *strenv(char *env, char *variable, char *value);
 
 /** _getline*/
 char *insertstring(char **dst, char *str);

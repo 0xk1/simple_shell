@@ -1,3 +1,6 @@
 hsh
+checker.bash
+ls_in_current_dir.bash
 *.bash
 *.Identifier
+.gitignore
