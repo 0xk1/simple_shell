@@ -11,6 +11,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 	size_t n = 0;
 	ssize_t n_chars;
 	bool run = true;
+	int status = 2;
 
 	while (run)
 	{
@@ -35,8 +36,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 			perror("parsing failed");
 			return (2);
 		}
-		execute(tokens, argv, input);
-
+		execute(tokens, argv, input, &status);
 		free_tokens(tokens);
 		if (input)
 		{
@@ -46,6 +46,6 @@ int main(int argc __attribute__((unused)), char *argv[])
 		n = 0;
 	}
 	free(input);
-	return (0);
+	return (status);
 }
 

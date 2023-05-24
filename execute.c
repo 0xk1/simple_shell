@@ -52,10 +52,11 @@ int handle_builtin(char **tokens, char *input)
  * execute - function that execute commands
  * @tokens: array of tokens
  * @input: input
+ * @status: status
  * @argv: argv
  */
 
-void execute(char **tokens, char *argv[], char *input)
+void execute(char **tokens, char *argv[], char *input, int *status)
 {
 	char *cmd = tokens[0], *path;
 	pid_t pid;
@@ -68,9 +69,9 @@ void execute(char **tokens, char *argv[], char *input)
 			err_count++;
 			print_error(argv[0], err_count, cmd);
 			_puts(": not found\n", 2);
+			*status = 2;
 			return;
 		}
-
 		pid = fork();
 		if (pid == 0)
 		{
@@ -84,7 +85,11 @@ void execute(char **tokens, char *argv[], char *input)
 			}
 		}
 		else if (pid > 0)
-			wait(NULL);
+		{
+			waitpid(pid, status, 0);
+			if (*status != 0)
+				*status = 2;
+		}
 		else
 			perror("fork() failed");
 

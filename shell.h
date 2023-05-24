@@ -44,7 +44,7 @@ char *_getenv(char *name);
 int strdiff(char *str1, char *str2);
 
 /** execution */
-void execute(char **, char **, char *);
+void execute(char **, char **, char *, int *);
 char *handle_path(char *cmd);
 int (*get_built_in(char *name))(char **, char *input);
 
