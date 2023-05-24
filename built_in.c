@@ -50,7 +50,7 @@ int env_func(char **args, char *input)
 		_puts("env: '", 2);
 		_puts(args[1], 2);
 		_puts("': No such file or directory\n", 2);
-		return;
+		return (-1);
 	}
 
 	while (environ[i])
@@ -59,7 +59,7 @@ int env_func(char **args, char *input)
 		_puts("\n", 1);
 		i++;
 	}
-
+	return (0);
 }
 
 /**
