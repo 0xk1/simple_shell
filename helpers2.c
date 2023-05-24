@@ -61,6 +61,14 @@ void set_old_pwd(char *buff)
 	chdir(temp);
 }
 
+/**
+ * strenv - string concat for env
+ * @env: the env variable
+ * @variable: the variabel name
+ * @value: the value
+ * Return: return char
+*/
+
 char *strenv(char *env, char *variable, char *value)
 {
 	int j = 0, i = 0, len_var, len_value;
