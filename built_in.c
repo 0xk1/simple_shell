@@ -133,7 +133,6 @@ int _cd(char **args, char *input __attribute__((unused)))
 
 		if (!check)
 		{
-
 			_setenv("OLDPWD", _getenv("PWD"), 0);
 			if (getcwd(buff, sizeof(buff)) != NULL)
 			{
