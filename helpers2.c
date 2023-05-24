@@ -60,3 +60,38 @@ void set_old_pwd(char *buff)
 		perror("getcwd");
 	chdir(temp);
 }
+
+/**
+ * strenv - string concat for env
+ * @env: the env variable
+ * @variable: the variabel name
+ * @value: the value
+ * Return: return char
+*/
+
+char *strenv(char *env, char *variable, char *value)
+{
+	int j = 0, i = 0, len_var, len_value;
+
+	if (!variable)
+		return (0);
+
+	len_value = _strlen(value);
+	len_var = _strlen(variable);
+	while (i < len_var)
+	{
+		env[i] = variable[i];
+		i++;
+	}
+	env[i] = '=';
+	i++;
+	while (j < len_value)
+	{
+		env[i] = value[j];
+		j++;
+		i++;
+	}
+	env[i] = '\0';
+
+	return (env);
+}

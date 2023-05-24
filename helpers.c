@@ -40,10 +40,11 @@ int check_blank(char *input)
  * @overwrite: if overwrite = 0 the value will be overwritten
  * Return: return 0 on success -1 on any faillure
 */
-
 int _setenv(char *name, char *value, int overwrite)
 {
-	char **env;
+	char *env[50];
+	char env_v[2000], env_g[2000];
+	char eng[50][2000];
 	int i = 0, tst = 0, j = 0;/*tst - test if "name" is a varibale path*/
 	int namelen = _strlen(name);
 
@@ -59,7 +60,8 @@ int _setenv(char *name, char *value, int overwrite)
 	if (tst == 1)
 	{
 		if (overwrite == 0)
-			environ[i] = _strdup(string_concat(name, value, '='));
+			env[0] = strenv(env_g, name, value);
+		environ[i] = env[0];
 		return (0);
 	}
 	if (tst == 0)
@@ -68,16 +70,11 @@ int _setenv(char *name, char *value, int overwrite)
 		/*getting env lengh*/
 		while (environ[ln] != NULL)
 			ln++;
-
-		env = malloc(8 * (ln + 2));
-
 		/**copying environ into env*/
 		for (j = 0; environ[j] != NULL; j++)
-			env[j] = environ[j];
+			env[j] = _strcpy(eng[j], environ[j]);
 		/**setting the new environemnt variable*/
-		env[j] = string_concat(name, value, '=');
-		env[j + 1] = NULL;
-
+		env[j] = strenv(env_v, name, value);
 		environ = env;
 		return (0);
 	}

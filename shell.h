@@ -66,6 +66,7 @@ void handler_function(int i);
 int _atoi(char *);
 void cd_home(char *);
 void set_old_pwd(char *);
+char *strenv(char *env, char *variable, char *value);
 
 /** _getline*/
 char *insertstring(char **dst, char *str);
