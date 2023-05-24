@@ -23,7 +23,7 @@ int exit_func(char **args, char *input)
 	{
 		_puts(SHELL_NAME, 2);
 		_puts(": ", 2);
-		print_int(err_count);
+		print_int(1);
 		_puts(": exit: Illegal number: ", 2);
 		_puts(args[1], 2);
 		_puts("\n", 2);

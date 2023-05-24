@@ -12,7 +12,7 @@
 #include <signal.h>
 
 #define PROMPT "$ "
-#define SHELL_NAME "hsh"
+#define SHELL_NAME "./hsh"
 
 static int err_count __attribute__((unused));
 extern char **environ;
