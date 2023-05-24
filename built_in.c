@@ -121,6 +121,7 @@ int _cd(char **args, char *input __attribute__((unused)))
 	if (i == 1)
 	{
 		cd_home(buff);
+		_puts("/root\n", 1);
 		return (0);
 	}
 	if (i == 2)
