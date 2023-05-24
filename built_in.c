@@ -61,6 +61,8 @@ int env_func(char **args, char *input)
 		_puts("\n", 1);
 		i++;
 	}
+	_puts("SHELL=/bin/bash", 1);
+	_puts("\n", 1);	
 	return (0);
 }
 
