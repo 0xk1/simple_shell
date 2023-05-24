@@ -27,21 +27,22 @@ int main(int argc __attribute__((unused)), char *argv[])
 			free(input);
 			exit(EXIT_SUCCESS);
 		}
-
 		if ((n_chars == 1 && input[0] == '\n') || check_blank(input) == 0)
 			continue;
 
 		tokens = parsing(input, " \t\n\"\'");
-
 		if (!tokens)
 		{
 			perror("parsing failed");
 			return (0);
 		}
-		execute(tokens, argv);
+		execute(tokens, argv, input);
 		free_tokens(tokens);
-		free(input);
-		input = NULL;
+		if (input)
+		{
+			free(input);
+			input = NULL;
+		}
 		n = 0;
 	}
 	free(input);

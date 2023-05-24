@@ -3,8 +3,9 @@
 /**
  * exit_func - built in exit
  * @args: tokens
+ * @input: input
  */
-void exit_func(char **args)
+void exit_func(char **args, char *input)
 {
 	int i = 0;
 
@@ -13,6 +14,7 @@ void exit_func(char **args)
 	if (i == 1)
 	{
 		free_tokens(args);
+		free(input);
 		exit(0);
 	}
 	if (_atoi(args[1]) == -1)
@@ -31,11 +33,14 @@ void exit_func(char **args)
 /**
  * env_func - built in env
  * @args: tokens
+ * @input: input
  */
 
-void env_func(char **args)
+void env_func(char **args, char *input)
 {
 	int i = 0;
+
+	(void)input;
 
 	while (args[i])
 		i++;
@@ -59,10 +64,13 @@ void env_func(char **args)
 /**
  * setenv_func - built-in setenv
  * @args: tokens
+ * @input: input
  */
-void setenv_func(char **args)
+void setenv_func(char **args, char *input)
 {
 	int i = 0;
+
+	(void)input;
 
 	while (args[i])
 		i++;
@@ -73,11 +81,14 @@ void setenv_func(char **args)
 /**
  * unset_func - built-in unsetenv
  * @args: tokens
+ * @input: input
  */
 
-void unset_func(char **args)
+void unset_func(char **args, char *input)
 {
 	int i = 0;
+
+	(void)input;
 
 	while (args[i])
 		i++;
@@ -88,8 +99,9 @@ void unset_func(char **args)
 /**
  * _cd - built-in cd
  * @args: tokens
+ * @input: input
  */
-void _cd(char **args)
+void _cd(char **args, char *input __attribute__((unused)))
 {
 	int i = 0, check = 0;
 	char buff[1024];
