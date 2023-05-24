@@ -42,16 +42,24 @@ int env_func(char **args, char *input)
 	int i = 0;
 
 	(void)input;
-	(void)args;
-	if (!environ)
-		return (-1);
-	while (environ[i] != NULL)
+
+	while (args[i])
+		i++;
+	if (i > 1)
 	{
-		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
-		write(STDOUT_FILENO, "\n", 1);
+		_puts("env: '", 2);
+		_puts(args[1], 2);
+		_puts("': No such file or directory\n", 2);
+		return;
+	}
+
+	while (environ[i])
+	{
+		_puts(environ[i] ? environ[i] : "(nil)", 1);
+		_puts("\n", 1);
 		i++;
 	}
-	return (0);
+
 }
 
 /**
