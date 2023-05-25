@@ -49,17 +49,6 @@ When contributing to this repository, please first discuss the change you wish t
 
 Once the shell program is running, you can enter commands and interact with the shell. The shell will execute the commands and provide the output accordingly. You can use built-in commands like env, exit, setenv, unset, and cd as well.
 
-Example usage:
-    ```shell
-    $ ls
-    file1.txt  file2.txt  directory/
-    $ pwd
-    /home/user/current_directory
-    $ cd directory/
-    $ pwd
-    /home/user/current_directory/directory
-    $ exit
-
 ## License
 
 MIT License
