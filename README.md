@@ -45,3 +45,43 @@ Contributions to the shell project are welcome. If you encounter any issues or h
 
 When contributing to this repository, please first discuss the change you wish to make via issue or email with the project maintainers.
 
+## Usage
+
+Once the shell program is running, you can enter commands and interact with the shell. The shell will execute the commands and provide the output accordingly. You can use built-in commands like env, exit, setenv, unset, and cd as well.
+
+Example usage:
+    ```shell
+    $ ls
+    file1.txt  file2.txt  directory/
+    $ pwd
+    /home/user/current_directory
+    $ cd directory/
+    $ pwd
+    /home/user/current_directory/directory
+    $ exit
+
+## License
+
+MIT License
+
+simple_shell
+
+Copyright (c) 2023 0xk1, ekarkat
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
