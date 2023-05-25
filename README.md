@@ -33,7 +33,7 @@ To install and run the shell program, follow these steps:
 1. Clone the repository:
 
    ```shell
-   git clone git@github.com:0xk1/simple_shell.git
+   git clone https://github.com/0xk1/simple_shell.git
 2. Compile the source code:
     ```shell
     gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
@@ -50,4 +50,6 @@ When contributing to this repository, please first discuss the change you wish t
 Once the shell program is running, you can enter commands and interact with the shell. The shell will execute the commands and provide the output accordingly. You can use built-in commands like env, exit, setenv, unset, and cd as well.
 
 ## License
+The content in this repository is licensed under the MIT License. Make sure to review and comply with the license when using or modifying the materials in this repository.
 
+If you have any questions or need further assistance, feel free to contact us or create an issue in the repository.
