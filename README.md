@@ -33,8 +33,9 @@ To install and run the shell program, follow these steps:
 1. Clone the repository:
 
    ```shell
-   git clone <repository_url>
+   git clone <git@github.com:0xk1/simple_shell.git>
 2. Compile the source code:
+    ```shell
     gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
 3. Run the shell:
 
