@@ -1,6 +1,7 @@
 # Shell Project
 
 This is a shell project implemented in C. The shell is capable of executing commands and providing a command-line interface for the user.
+![Shell Image](./shell.jpeg)
 
 ## Table of Contents
 
